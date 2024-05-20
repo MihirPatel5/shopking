@@ -1,0 +1,47 @@
+{% extends 'log/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container bg-light my-3">
+  <h3 class="text-primary text-center">Exclusive Product Range on ShopKing 👑</h3>
+<div class="py-3 py-md-5 bg-light">
+    <div class="container-fluid shadow bg-light">
+        <div class="row">
+            <div class="col-md-12 text-center ">
+                <h2 class="text-danger mb-4">Special Offers</h2>
+            </div>
+            {%for product in products %}
+            <div class="col-xs-3 col-sm-3 col-md-3 my-1">
+              <div class="card shadow" style="width: 18rem;">
+                <a href="{% url 'ProductView' product.id %}">
+                <img src='{{ product.img.url }}' class="img-fluid card-img-top" alt="..Image Fetching...!!!!!!">
+                <div class="card-body">
+                  <h5 class="card-title link-outline-danger">{{product.product_name}}</h5></a><hr>
+                  <p class="card-text text-muted">{{product.details}}</p>
+                  <a href="" class="btn btn-outline-danger my-2 mx-2"> {{product.price}}-$ USD </a>
+                  <form
+                action="{% url 'create-checkout-session' product.id %}"
+                method="POST">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-outline-primary mx-2">Buy Now</button>
+        </form>   
+                </div>
+              </div>  
+            </div>
+            {%endfor%}
+            <center>
+              {%if products.has_previous %} {# whether the previous page exists #}
+                  <a href="?page={{products.previous_page_number}}">Back</a> {# link to the prev page #}
+                  <span>{{products.previous_page_number}}</span>
+              {% endif %}
+              <button class="outline-info"><span>{{products.number}}</span></button> {# the current page number #}
+              {%if products.has_next %} {# whether the next page exists #}
+                  <span>{{products.next_page_number}}</span>
+                  <a href="?page={{products.next_page_number}}">Next</a> {# link to the next page #}
+              {% endif %}
+            </center>
+            <a href="{% url 'home' %}" class="btn btn-danger my-2">Back to Home</a>
+          </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

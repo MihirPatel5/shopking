@@ -1,0 +1,76 @@
+{% extends 'log/base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="py-3 py-md-4 checkout">
+    <div class="container">
+        <h2 class="text-center text-danger">Proceed to Buy :</h2>
+        <hr>
+        <div class="row">
+            <div class="col-md-12 mb-4">
+                <div class="shadow bg-white p-3">
+                    {% for p in product %}
+                    <h4 class="text-primary">
+                        Total Paid Amount :
+                        <span class="float-end">{{ p.price}}/-Rs.</span>
+                    </h4>
+                    {%endfor%}
+                    <hr>
+                    <small>* Items will be delivered in 3 - 5 days.</small>
+                    <br/>
+                    <small>* Tax and other charges are included ?</small>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="shadow bg-white p-3">
+                    <h4 class="text-primary">
+                        Enter a Delivery Address:
+                    </h4>
+                    <hr>
+                    <form action="" method="POST">{% csrf_token %}                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label>Full Name</label>
+                                <input type="text" name="full_name" class="form-control" placeholder="Enter Full Name" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label>Phone Number</label>
+                                <input type="number" name="phone_number" class="form-control" placeholder="Enter Phone Number" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label>Email Address</label>
+                                <input type="email" name="email_address" class="form-control" placeholder="Enter Email Address" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label>Pin-code (Zip-code)</label>
+                                <input type="number" name="pincode" class="form-control" placeholder="Enter Pin-code" />
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label>Full Address</label>
+                                <textarea name="address" class="form-control" rows="2"></textarea>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label>Submit Shipping Details: </label>
+                                <div class="d-md-flex align-items-start">
+                                    <div class="nav col-md-3 flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                        <button class="nav-link fw-bold" id="cashOnDeliveryTab-tab" data-bs-toggle="pill" data-bs-target="#cashOnDeliveryTab" type="button" role="tab" aria-controls="cashOnDeliveryTab" aria-selected="true">Verify & submit</button>
+                                    </div>
+                                    <div class="tab-content col-md-9" id="v-pills-tabContent">
+                                        <div class="tab-pane fade" id="cashOnDeliveryTab" role="tabpanel" aria-labelledby="cashOnDeliveryTab-tab" tabindex="0">
+                                            <hr/>
+                                            <a href="{% url 'success'  %}"><button type="submit" class="btn btn-success btn-primary">Place Order</button>
+                                            </a>
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %} 

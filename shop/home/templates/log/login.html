@@ -1,0 +1,40 @@
+{% extends 'log/base.html'%}
+{% load static%}
+{% load socialaccount %}
+{% block content%}
+<div class="card shadow text-bg-light">
+    <img src="/media/uploads/background.jpeg" alt="homeimg">
+<div class="card-img-overlay">  
+ <div class="min-h-screen bg-gray-100 py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-12 w-full border-b border-solid border-gray-200">
+        <h1 class="text-2xl font-bold text-center text-danger">Welcome to 𝕊𝕙𝕠𝕡𝕂𝕚𝕟𝕘 👑</h1>
+        <div class="card shadow text-center shadow text-bg-light my-5">
+            <div class="card-header">
+              <h2 class="text-danger text-opacity-75">Log in</h2>
+            </div>
+            <div class="card-body text-primary">
+              <h4 class="card-title">Grand Deals.</h4>
+              <p class="card-text text-opacity-75">All category products availabel with special offers.</p>
+              <form action="" method="post" class="form-floating form-center">
+                {%csrf_token%}
+                {{form.as_p}}
+                <button type="submit" class="btn btn-outline-danger">Login</button>
+            </form>   
+            </div>
+            <div class="card-footer text-muted">
+              <span class="text-danger">Use Social Instead?</span> Sign in with
+              <a href="{% provider_login_url 'google' %}" class="btn btn-outline-danger">  Google</a>
+              <a href="{% provider_login_url 'facebook' %}" class="btn btn-outline-danger"> Facebook</a>
+            </div>
+            <div class="card-footer text-muted">
+              <span class="text-danger">New User?</span>   Click Here to Register
+              <a href="{% url 'register'%}" class="btn btn-primary">Register</a>
+            </div>
+          </div>
+      </div>
+    </div>
+ </div>
+</div>
+</div>
+{%endblock content%}

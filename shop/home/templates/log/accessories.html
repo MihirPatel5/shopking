@@ -1,0 +1,25 @@
+{% extends 'log/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container bg-light my-3">
+  <h3 class="text-danger text-center">Exclusive Accessories : Category on ShopKing 👑</h3>
+<div class="row">
+        {%for product in products %}
+        <div class="col-xs-3 col-sm-3 col-md-3">
+          <div class="card my-2" style="width: 18rem;">
+            <a href="{% url 'ProductView' product.id %}"> 
+            <img src='{{ product.img.url }}' class="card-img-top" alt="..Image Fetching...!!!!!!">
+            <div class="card-body">
+              
+              <h5 class="card-title placeholder-glow link-danger">{{product.product_name}}</h5></a><hr>
+              <p class="card-text text-muted">{{product.details}}</p>
+              <a href="{% url 'checkout' product.id %}" class="btn btn-outline-primary">Buy Now {{product.price}}-$ USD </a>
+              <a href="" class="btn btn-outline-danger my-2"> Add To Cart  </a>
+            </div>
+        </div>  
+      </div>
+      {%endfor%}
+   <a href="{% url 'products' %}" class="btn btn-danger">More Category</a>
+</div>
+</div>
+{% endblock content %}              

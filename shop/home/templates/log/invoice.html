@@ -1,0 +1,12 @@
+{% extends 'log/base.html' %}
+{% load static %}
+{% block content %}
+
+{% for customer in p_details%}
+
+{{customer.full_name}}
+
+{%endfor%}
+
+{% endblock content %}
+

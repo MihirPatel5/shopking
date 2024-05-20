@@ -1,0 +1,36 @@
+{% extends 'log/base.html' %}
+{% load static %}
+{%block content%}
+{% load socialaccount %}
+
+
+<div class="bg-transparent">
+<div class="container">
+    <div class="row justify-content-center align-items-center" style="min-height: 60vh;">
+      <div class="card text-center text-bg-secondary centered" style="width: 70rem;">
+        <div class="card-body">
+          <h3 class="card-title text-info text-opacity-75">Registration Here</h3><hr>
+          <form action="" method="post" class="form-floating mb-3 my-5 mx-5">
+            {% csrf_token %}
+            {% for field in form %}
+      <p>
+        {{ field.label_tag }} {{ field }}<br>
+        {% for error in field.errors %}
+          <p style="color: rgb(42, 5, 128)">{{ error }}</p>
+        {% endfor %}
+      </p>
+        {% endfor %}
+            <button type="submit" class="btn btn-outline-info">Register</button>
+            <hr>
+          </form>
+          <a href="{% url 'login_usr' %}" class="btn btn-outline-warning mx-5">Login</a>
+          <a href="{% provider_login_url 'google' %}" class="btn btn-outline-danger">Sign up with Google</a>
+          <a href="{% provider_login_url 'facebook' %}" class="btn btn-outline-danger"> or Facebook</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+{%endblock content%}
